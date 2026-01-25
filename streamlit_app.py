@@ -16,9 +16,26 @@ agg_data_by_year_region = (
     .reset_index()
 )
 
+agg_data_by_year = (
+    agg_data_by_year_region.groupby(["Year"])[
+        "Monthly_Average_Sea_Surface_Temperature_degrees_C"
+    ]
+    .mean()
+    .reset_index()
+)
+
+st.header("Overall Yearly Sea Temperature Variation")
+st.line_chart(
+    agg_data_by_year,
+    x="Year",
+    y="Monthly_Average_Sea_Surface_Temperature_degrees_C",
+    y_label="Avg. Sea Surface Temp",
+)
+
+
 sea_areas = sorted(list(pd.unique(agg_data_by_year_region["Sea_Area"])))
 
-st.header("Sea Temperature Variation by Region")
+st.header("Yearly Sea Temperature Variation by Region")
 selected_sea_area = st.selectbox(
     "Region",
     sea_areas,
