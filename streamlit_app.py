@@ -16,6 +16,10 @@ agg_data_by_year_region = (
     .reset_index()
 )
 
+agg_data_by_year_region["Year"] = pd.to_datetime(
+    agg_data_by_year_region["Year"], format="%Y"
+)
+
 agg_data_by_year = (
     agg_data_by_year_region.groupby(["Year"])[
         "Monthly_Average_Sea_Surface_Temperature_degrees_C"
