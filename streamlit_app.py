@@ -8,7 +8,6 @@ cols_to_drop = [2, 3]
 
 data = df.drop(df.columns[cols_to_drop], axis=1)
 
-
 agg_data_by_year_region = (
     data.groupby(["Year", "Sea_Area"])[
         "Monthly_Average_Sea_Surface_Temperature_degrees_C"
@@ -38,7 +37,6 @@ if selected_sea_area:
         y="Monthly_Average_Sea_Surface_Temperature_degrees_C",
         y_label="Avg. Sea Surface Temp",
     )
-
 
 st.header("Credits")
 st.markdown(
